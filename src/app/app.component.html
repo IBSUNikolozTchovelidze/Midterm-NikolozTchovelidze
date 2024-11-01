@@ -1,0 +1,96 @@
+<!--Task 1 DONE-->
+<h1>TASK 1</h1>
+<br/>
+<h1>{{title}}</h1>
+<br/>
+
+<!--Task 2 DONE-->
+<h1>TASK 2</h1>
+<br/>
+<h2>Users over 20:</h2>
+<ul>
+  <li *ngFor="let user of users">
+    <span *ngIf="user.age > 20">
+      {{ user.firstName }} {{ user.lastName }} (Age: {{ user.age }})
+    </span>
+  </li>
+</ul>
+<br/>
+
+<!--Task 3 DONE-->
+<h1>TASK 3</h1>
+<br/>
+<app-user [users_3]="users_3" (childUsersEmitter)="childUsersEmitter($event)"></app-user>
+<br/>
+
+<!--Task 4 DONE-->
+
+<br/>
+<h1>Array from child component</h1>
+
+<h1 *ngFor="let user of ChildUser">{{user.firstName}} - {{user.lastName}}</h1>
+
+<!--Task 5 DONE-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<div class="container">
+  <br/>
+  <br/>
+  <h1>TASK 5</h1>
+  <form [formGroup]="userForm" (ngSubmit)="addUser()">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" id="firstName" class="form-control" formControlName="firstName">
+      <div *ngIf="userForm.get('firstName')?.touched && userForm.get('firstName')?.invalid" class="text-danger">
+        <div *ngIf="userForm.get('firstName')?.errors?.['required']">Last Name is required.</div>
+        <div *ngIf="userForm.get('firstName')?.errors?.['minlength']">Minimum length is 3.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" class="form-control" formControlName="lastName">
+      <div *ngIf="userForm.get('lastName')?.touched && userForm.get('lastName')?.invalid" class="text-danger">
+        <div *ngIf="userForm.get('lastName')?.errors?.['required']">Last Name is required.</div>
+        <div *ngIf="userForm.get('lastName')?.errors?.['minlength']">Minimum length is 3.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dateOfBirth">Date of Birth</label>
+      <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth">
+      <div *ngIf="userForm.get('dateOfBirth')?.touched && userForm.get('dateOfBirth')?.invalid" class="text-danger">
+        <div *ngIf="userForm.get('dateOfBirth')?.errors?.['required']">Date of Birth is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number</label>
+      <input type="text" id="phoneNumber" class="form-control" formControlName="phoneNumber">
+      <div *ngIf="userForm.get('phoneNumber')?.touched && userForm.get('phoneNumber')?.invalid" class="text-danger">
+        <div *ngIf="userForm.get('phoneNumber')?.errors?.['required']">Phone Number is required.</div>
+        <div *ngIf="userForm.get('phoneNumber')?.errors?.['minlength']">Minimum length is 9.</div>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" class="form-control" formControlName="email">
+      <div *ngIf="userForm.get('email')!.touched && userForm.get('email')!.invalid" class="text-danger">
+        <div *ngIf="userForm.get('email')!.errors?.['required']">Email is required.</div>
+        <div *ngIf="userForm.get('email')!.errors?.['email']">Invalid email format.</div>
+        <div *ngIf="userForm.get('email')!.errors?.['minlength']">Minimum length is 8.</div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Add User</button>
+  </form>
+
+  <h2 class="mt-4">User List</h2>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let user of users_5">
+      {{ user.firstName }} {{ user.lastName }} - {{ user.email }}
+    </li>
+  </ul>
+</div>
